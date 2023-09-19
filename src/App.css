@@ -1,4 +1,81 @@
-.App {
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Layout */
+
+/* .mainLayout {
+  overflow-x: hidden;
+  display: grid;
+  min-height: 100vh;
+  grid-template-areas:
+    "content"
+    "footer";
+  grid-template-rows: 1fr auto;
+  margin-bottom: 0;
+  padding-bottom: 0;
+} */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  /* position: fixed;
+  z-index: 10; */
+  /* grid-area: header;
+  padding: 0;
+  height: auto;
+  line-height: 1.6; */
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* .layoutContent {
+  grid-area: content;
+} */
+
+@media (min-width: 576px) {
+  .container {
+    width: 540px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1140px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    width: 1500px;
+  }
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +112,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

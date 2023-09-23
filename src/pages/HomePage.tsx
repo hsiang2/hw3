@@ -1,36 +1,22 @@
-import { Col, Row } from "antd"
+import { Row } from "antd"
 import Header from "../components/Header"
 // import { getBooks } from "../api"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { selectBooks } from "../redux/bookSlice"
-import { Link } from "react-router-dom"
+import BookItem from "../components/BookItem"
 // import { useBooks } from "../react-query"
 
 const HomePage = () => {
-    // const dispatch = useDispatch<any>()
     const books = useSelector(selectBooks)
 
-    // useEffect(() => {
-    //     dispatch(getBooks())
-    // }, [])
-
+    // console.log(books)
     return (
         <>
             <Header />
             <div className="container">
-                <Row align="top" gutter={[32, 32]} style={{marginBottom: "9rem"}}>
+                <Row align="top" gutter={[40, 40]} style={{margin: "6rem 0"}}>
                     {books.map((book: Book) => (
-                        <Col 
-                            key={book.id}
-                            xs={{ span: 24 }}
-                            sm={{ span: 24 }} 
-                            md={{ span: 12 }}
-                            lg={{ span: 8 }}
-                        >
-                            <Link to={`/id/${book.id}`}>
-                                {book.title}
-                            </Link>
-                        </Col>
+                        <BookItem book={book} key={book.id} />
                     ))}
                 </Row>
             </div>

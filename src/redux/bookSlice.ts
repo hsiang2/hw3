@@ -9,19 +9,13 @@ export const getBooks = createAsyncThunk(
     async () => {
         try {
             const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-            return response.data
-        } catch (error) {
-            console.error(error);
-          }
-    }
-)
-
-export const getBookById = createAsyncThunk(
-    "book/getBookById",
-    async (bookId: number) => {
-        try {
-            const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${bookId}`)
-            return response.data
+            const data = response.data.map((e: object) => (
+                {
+                    ...e,
+                    image: "/images/img_book.jpg"
+                }
+            ))
+            return data
         } catch (error) {
             console.error(error);
           }
@@ -41,8 +35,23 @@ export const addBook = createAsyncThunk(
                  
             // }
             )
-            
-            return response.data
+            const data = {
+                ...response.data,
+                image: "/images/img_book.jpg"
+            }
+            return data
+        } catch (error) {
+            console.error(error);
+          }
+    }
+)
+
+export const deleteBook = createAsyncThunk(
+    "book/deleteBook",
+    async (bookId: string) => {
+        try {
+            const response = await axios.delete(`https://jsonplaceholder.typicode.com/posts/${bookId}`)
+            return parseInt(bookId)
         } catch (error) {
             console.error(error);
           }
@@ -79,13 +88,24 @@ const bookSlice = createSlice({
                 state.books.push(action.payload);
                 state.isLoading = false;
                 state.hasError = false;
-                console.log(state.books[100])
             })
             .addCase(addBook.rejected, (state, action) => {
                 state.isLoading = false;
                 state.hasError = true;
-            });
-
+            })
+            .addCase(deleteBook.pending, (state) => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(deleteBook.fulfilled, (state, action) => {
+                state.books = state.books.filter((e) => e.id !== action.payload);
+                state.isLoading = false;
+                state.hasError = false;
+            })
+            .addCase(deleteBook.rejected, (state, action) => {
+                state.isLoading = false;
+                state.hasError = true;
+            })
     }
     // reducers: {
     //     fetchBooks: (state) => {

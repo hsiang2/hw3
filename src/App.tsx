@@ -10,7 +10,7 @@ import BookPage from './pages/BookPage';
 
 function App() {
   const dispatch = useDispatch<any>()
-dispatch(getBooks())
+  dispatch(getBooks())
   return (
     <div className="App">
       <Routes>

@@ -48,41 +48,48 @@ const AddBookPage = () => {
         <>
             <Header />
             <div className="container">
-                <Form
-                    name="basic"
-                    labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}
-                    style={{ maxWidth: 600 }}
-                    onFinish={handleAddBook}
-                >
-                    <Form.Item<FieldType>
-                        label="Title"
-                        name="title"
-                        rules={[{ required: true, message: 'Please input your title!' }]}
+                <div className="add-book">
+                    <h1 className="add-book-title">
+                        Add a Book.
+                    </h1>
+                    <Form
+                        name="basic"
+                        style={{ width: "100%"}}
+                        onFinish={handleAddBook}
+                        labelCol={{span: 24}}
+                        className="add-book-form"
                     >
-                        <Input value={title} onChange={handleTitleChange} />
-                    </Form.Item>
-                    <Form.Item<FieldType>
-                        label="UserID"
-                        name="userId"
-                        rules={[{ required: true, message: 'Please input your user Id!' }]}
-                    >
-                        <InputNumber value={userId} onChange={handleUserIdChange} />
-                    </Form.Item>
-                    <Form.Item<FieldType>
-                        label="Body"
-                        name="body"
-                        rules={[{ required: true, message: 'Please input your body!' }]}
-                    >
-                        <TextArea value={body} onChange={handleBodyChange} />
-                    </Form.Item>
+                        <Form.Item<FieldType>
+                            label="Book Title"
+                            name="title"
+                            rules={[{ required: true, message: 'Please input book title!' }]}
+                        >
+                            <Input value={title} onChange={handleTitleChange} />
+                        </Form.Item>
+                        <Form.Item<FieldType>
+                            label="Author"
+                            name="userId"
+                            rules={[{ required: true, message: 'Please input the author!' }]}
+                        >
+                            <InputNumber value={userId} onChange={handleUserIdChange} />
+                        </Form.Item>
+                        <Form.Item<FieldType>
+                            label="Description"
+                            name="body"
+                            rules={[{ required: true, message: 'Please input the description!' }]}
+                        >
+                            <TextArea rows={4} value={body} onChange={handleBodyChange} />
+                        </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="primary" htmlType="submit">
-                        SUBMIT
-                    </Button>
-                    </Form.Item>
-                </Form>
+                        <Form.Item>
+                        <div className="add-book-btn-wrapper">
+                            <Button className="add-book-btn" shape="round" size="large" type="primary" htmlType="submit">
+                                SUBMIT
+                            </Button>
+                        </div>
+                        </Form.Item>
+                    </Form>
+                </div>
             </div>
         </>
     )

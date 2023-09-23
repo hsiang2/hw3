@@ -10,13 +10,13 @@ const Header = () => {
         // <div className="header">
         <div className="container header">
             <div className="nav-left">
-                <Link to="/">
+                <Link to="/" className="header-home">
                     BOOKS
                 </Link>
                 <Search placeholder="Find Books..." onSearch={onSearch}  />
             </div>
             <Link to="/addBook">
-                <Button type="primary" shape="round">ADD NEW BOOKS</Button>
+                <Button type="primary" shape="round" className="header-btn">ADD NEW BOOKS</Button>
             </Link>
         </div>
         // </div>

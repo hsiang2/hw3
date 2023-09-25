@@ -154,6 +154,15 @@
   }
 }
 
+.submit-update-btn.ant-btn-round.ant-btn-lg {
+  width: 8rem;
+  margin-left: 1rem;
+  background-color: #3d6f59;
+  &:hover {
+    background-color: #2f5544;
+  }
+}
+
 
 @media (min-width: 576px) {
   .container {

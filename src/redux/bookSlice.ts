@@ -4,6 +4,15 @@ import axios from "axios";
 // const books: Book[] = []
 // const initialState = { books }
 
+interface UpdateBookPayload {
+    bookId: string;
+    bookData: {
+        title: string;
+        body: string;
+        userId: number;
+    };
+}
+
 export const getBooks = createAsyncThunk(
     "book/getBooks",
     async () => {
@@ -15,6 +24,22 @@ export const getBooks = createAsyncThunk(
                     image: "/images/img_book.jpg"
                 }
             ))
+            return data
+        } catch (error) {
+            console.error(error);
+          }
+    }
+)
+
+export const updateBook = createAsyncThunk<Book, UpdateBookPayload>(
+    "book/updateBook",
+    async ({bookId, bookData}) => {
+        try {
+            const response = await axios.patch(`https://jsonplaceholder.typicode.com/posts/${bookId}`, bookData)
+            const data = {
+                ...response.data,
+                image: "/images/img_book.jpg"
+            }
             return data
         } catch (error) {
             console.error(error);
@@ -103,6 +128,21 @@ const bookSlice = createSlice({
                 state.hasError = false;
             })
             .addCase(deleteBook.rejected, (state, action) => {
+                state.isLoading = false;
+                state.hasError = true;
+            })
+            .addCase(updateBook.pending, (state) => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(updateBook.fulfilled, (state, action) => {
+                let index = state.books.findIndex((e:any) => e.id == action.payload.id);
+                state.books[index] = action.payload;
+                // state.book = action.payload;
+                state.isLoading = false;
+                state.hasError = false;
+            })
+            .addCase(updateBook.rejected, (state, action) => {
                 state.isLoading = false;
                 state.hasError = true;
             })

@@ -7,6 +7,7 @@ import AddBookPage from './pages/AddBookPage';
 import { useDispatch } from 'react-redux';
 import { getBooks } from './redux/bookSlice';
 import BookPage from './pages/BookPage';
+import UpdateBookPage from './pages/UpdateBookPage';
 
 function App() {
   const dispatch = useDispatch<any>()
@@ -16,8 +17,8 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='addBook' element={<AddBookPage />} />
-        <Route path='id/:bookId' element={<BookPage />} />
-        {/* <Route path='book/:bookID' element={}/> */}
+        <Route path='book/:bookId' element={<BookPage />} />
+        <Route path='update/:bookId' element={<UpdateBookPage />} />
       </Routes>
     </div>
   );

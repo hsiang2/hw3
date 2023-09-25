@@ -16,9 +16,7 @@ const BookPage = () => {
     // const book = useSelector(selectBookById)
 
     const books = useSelector(selectBooks)
-    const book = books.filter((e: any) => e.id == bookId)[0]
-
-    
+    const book = books.find((e: any) => e.id == bookId)
     const isLoading = useSelector(selectLoadingState)
     const navigate = useNavigate()
 
@@ -30,6 +28,7 @@ const BookPage = () => {
     };
 
     useEffect(() => {
+        
         // if (bookId) {
         //     const book = books.filter((e: any) => e.id == bookId)
         //     console.log(book)
@@ -67,7 +66,7 @@ const BookPage = () => {
                                 >
                                     <Button size="large" shape="round" className="delete-btn">DELETE</Button>
                                 </Popconfirm>
-                                <Button size="large" shape="round" className="update-btn">UPDATE</Button>
+                                <Button size="large" shape="round" className="update-btn" onClick={() => {navigate(`/update/${book.id}`)}}>UPDATE</Button>
                             </div>
                         </div>
                     </div>

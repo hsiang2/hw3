@@ -13,7 +13,7 @@ const BookItem = ({book}: BookItemProps) => {
             md={{ span: 12 }}
             lg={{ span: 6 }}
         >
-            <Link to={`/id/${book.id}`}>
+            <Link to={`/book/${book.id}`}>
                 <img src={book.image} className="book-item-img" />
                 <h2 className="book-item-title">{book.title}</h2>
                 <h3 className="book-item-author">By {authors[book.userId - 1]}</h3>

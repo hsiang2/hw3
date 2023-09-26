@@ -2,9 +2,10 @@ import { ChangeEvent, useState } from "react"
 import { useDispatch } from "react-redux"
 import { addBook } from "../redux/bookSlice"
 import Header from "../components/Header"
-import { Button, Form, Input, InputNumber } from "antd"
+import { Button, Form, Input, InputNumber, Select } from "antd"
 import TextArea from "antd/es/input/TextArea"
 import { useNavigate } from "react-router-dom"
+import { authors } from "../constants/global"
 
 
 const AddBookPage = () => {
@@ -36,12 +37,21 @@ const AddBookPage = () => {
         setBody(event.target.value);
     };
 
-    const handleUserIdChange = (value: number | undefined | null) => {
-        if (value !== undefined && value !== null) {
-            setUserId(value);
-        } else {
-            setUserId(0);
-        }
+    // const handleUserIdChange = (value: number | undefined | null) => {
+    //     if (value !== undefined && value !== null) {
+    //         setUserId(value);
+    //     } else {
+    //         setUserId(0);
+    //     }
+    // };
+
+    const handleUserIdChange =(value: string) => {
+        setUserId(parseInt(value))
+        // if (value !== undefined && value !== null) {
+        //     setUserId(value);
+        // } else {
+        //     setUserId(0);
+        // }
     };
 
     return (
@@ -71,7 +81,15 @@ const AddBookPage = () => {
                             name="userId"
                             rules={[{ required: true, message: 'Please input the author!' }]}
                         >
-                            <InputNumber value={userId} onChange={handleUserIdChange} />
+                            <Select
+                                // defaultValue="lucy"
+                                // style={{ width: 120 }}
+                                onChange={handleUserIdChange}
+                            >
+                                {authors.map((author, index) => (
+                                    <Select.Option key={index.toString()} value={(index + 1).toString()}>{author}</Select.Option>
+                                ))}
+                            </Select>
                         </Form.Item>
                         <Form.Item<FieldType>
                             label="Description"

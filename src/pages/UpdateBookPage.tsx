@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addBook, selectBooks, selectLoadingState, updateBook } from "../redux/bookSlice"
+import { selectBooks, updateBook } from "../redux/bookSlice"
 import Header from "../components/Header"
-import { Button, Form, Input, InputNumber } from "antd"
+import { Button, Form, Input, Select } from "antd"
 import TextArea from "antd/es/input/TextArea"
 import { useNavigate, useParams } from "react-router-dom"
-import { valueType } from "antd/es/statistic/utils"
+import { authors } from "../constants/global"
 
 
 
@@ -45,12 +45,13 @@ const UpdateBookPage = () => {
         setBody(event.target.value);
     };
 
-    const handleUserIdChange =(value: valueType | null) => {
-        if (value !== undefined && value !== null) {
-            setUserId(value);
-        } else {
-            setUserId(0);
-        }
+    const handleUserIdChange =(value: string) => {
+        setUserId(parseInt(value))
+        // if (value !== undefined && value !== null) {
+        //     setUserId(value);
+        // } else {
+        //     setUserId(0);
+        // }
     };
 
     return (
@@ -80,9 +81,18 @@ const UpdateBookPage = () => {
                             label="Author"
                             name="userId"
                             rules={[{ required: true, message: 'Please input the author!' }]}
-                            initialValue={userId}
+                            initialValue={userId.toString()}
                         >
-                            <InputNumber value={userId} onChange={handleUserIdChange} />
+                            <Select
+                                // defaultValue="lucy"
+                                // style={{ width: 120 }}
+                                onChange={handleUserIdChange}
+                            >
+                                {authors.map((author, index) => (
+                                    <Select.Option key={index.toString()} value={(index + 1).toString()}>{author}</Select.Option>
+                                ))}
+                            </Select>
+                            {/* <InputNumber value={userId} onChange={handleUserIdChange} /> */}
                         </Form.Item>
                         <Form.Item<FieldType>
                             label="Description"

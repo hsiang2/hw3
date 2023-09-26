@@ -38,8 +38,10 @@ export const updateBook = createAsyncThunk<Book, UpdateBookPayload>(
             const response = await axios.patch(`https://jsonplaceholder.typicode.com/posts/${bookId}`, bookData)
             const data = {
                 ...response.data,
-                image: "/images/img_book.jpg"
+                image: "/images/img_book.jpg",
+                id: parseInt(bookId)
             }
+            console.log(data)
             return data
         } catch (error) {
             console.error(error);
@@ -51,15 +53,7 @@ export const addBook = createAsyncThunk(
     "book/addBook",
     async (bookData: {title: string; body: string; userId: number;}) => {
         try {
-            const response = await axios.post('https://jsonplaceholder.typicode.com/posts', bookData 
-            // {
-            //     headers: {
-            //         'Content-type': 'application/json; charset=UTF-8',
-            //     },
-            //     body: JSON.stringify({ userId, title, body })
-                 
-            // }
-            )
+            const response = await axios.post('https://jsonplaceholder.typicode.com/posts', bookData)
             const data = {
                 ...response.data,
                 image: "/images/img_book.jpg"
@@ -110,7 +104,8 @@ const bookSlice = createSlice({
                 state.hasError = false;
             })
             .addCase(addBook.fulfilled, (state, action) => {
-                state.books.push(action.payload);
+                const data = { ...action.payload, id: (state.books[state.books.length - 1].id + 1)}
+                state.books.push(data);
                 state.isLoading = false;
                 state.hasError = false;
             })
@@ -136,7 +131,9 @@ const bookSlice = createSlice({
                 state.hasError = false;
             })
             .addCase(updateBook.fulfilled, (state, action) => {
+                
                 let index = state.books.findIndex((e:any) => e.id == action.payload.id);
+                
                 state.books[index] = action.payload;
                 // state.book = action.payload;
                 state.isLoading = false;

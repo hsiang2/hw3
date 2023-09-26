@@ -19,6 +19,7 @@ function App() {
         <Route path='addBook' element={<AddBookPage />} />
         <Route path='book/:bookId' element={<BookPage />} />
         <Route path='update/:bookId' element={<UpdateBookPage />} />
+        <Route path='/:keyword' element={<HomePage />} />
       </Routes>
     </div>
   );

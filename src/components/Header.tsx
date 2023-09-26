@@ -1,11 +1,16 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button, Input } from "antd"
 import type { SearchProps } from "antd/es/input";
 
 const { Search } = Input
-const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+
 
 const Header = () => {
+    const navigate = useNavigate()
+
+    const onSearch: SearchProps['onSearch'] = (value, _e, info) => {
+        navigate(`/${value.trim()}`)
+    }
     return (
         // <div className="header">
         <div className="container header">

@@ -4,12 +4,18 @@ import Header from "../components/Header"
 import { useSelector } from "react-redux"
 import { selectBooks } from "../redux/bookSlice"
 import BookItem from "../components/BookItem"
+import { useParams } from "react-router-dom"
+import { authors } from "../constants/global"
 // import { useBooks } from "../react-query"
 
 const HomePage = () => {
-    const books = useSelector(selectBooks)
+    const { keyword } = useParams()
+    let books = useSelector(selectBooks)
 
-    // console.log(books)
+    if (keyword) {
+        books = books.filter((e: Book) => e.title.toLowerCase().includes(keyword.toLowerCase()) || authors[e.userId - 1].toLowerCase().includes(keyword.toLowerCase()))
+    }
+    
     return (
         <>
             <Header />

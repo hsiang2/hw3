@@ -1,12 +1,10 @@
 import { Row } from "antd"
 import Header from "../components/Header"
-// import { getBooks } from "../api"
 import { useSelector } from "react-redux"
 import { selectBooks } from "../redux/bookSlice"
 import BookItem from "../components/BookItem"
 import { useParams } from "react-router-dom"
 import { authors } from "../constants/global"
-// import { useBooks } from "../react-query"
 
 const HomePage = () => {
     const { keyword } = useParams()

@@ -74,7 +74,7 @@ const AddBookPage = () => {
                             name="title"
                             rules={[{ required: true, message: 'Please input book title!' }]}
                         >
-                            <Input value={title} onChange={handleTitleChange} />
+                            <Input name="title" value={title} onChange={handleTitleChange} />
                         </Form.Item>
                         <Form.Item<FieldType>
                             label="Author"
@@ -96,7 +96,7 @@ const AddBookPage = () => {
                             name="body"
                             rules={[{ required: true, message: 'Please input the description!' }]}
                         >
-                            <TextArea rows={4} value={body} onChange={handleBodyChange} />
+                            <TextArea name="body" rows={4} value={body} onChange={handleBodyChange} />
                         </Form.Item>
 
                         <Form.Item>

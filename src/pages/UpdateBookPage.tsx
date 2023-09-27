@@ -47,11 +47,6 @@ const UpdateBookPage = () => {
 
     const handleUserIdChange =(value: string) => {
         setUserId(parseInt(value))
-        // if (value !== undefined && value !== null) {
-        //     setUserId(value);
-        // } else {
-        //     setUserId(0);
-        // }
     };
 
     return (
@@ -84,15 +79,12 @@ const UpdateBookPage = () => {
                             initialValue={userId.toString()}
                         >
                             <Select
-                                // defaultValue="lucy"
-                                // style={{ width: 120 }}
                                 onChange={handleUserIdChange}
                             >
                                 {authors.map((author, index) => (
                                     <Select.Option key={index.toString()} value={(index + 1).toString()}>{author}</Select.Option>
                                 ))}
                             </Select>
-                            {/* <InputNumber value={userId} onChange={handleUserIdChange} /> */}
                         </Form.Item>
                         <Form.Item<FieldType>
                             label="Description"

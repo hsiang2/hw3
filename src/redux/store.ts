@@ -11,6 +11,3 @@ export const store = configureStore({
     devTools: process.env.NODE_ENV !== 'production',
     middleware: [thunk] 
 })
-
-
-// export type AppDispatch = typeof store.dispatch

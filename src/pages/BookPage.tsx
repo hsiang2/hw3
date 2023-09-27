@@ -11,9 +11,7 @@ import { deleteBook, selectBooks } from "../redux/bookSlice"
 
 const BookPage = () => {
     const { bookId } = useParams()
-    // const
     const dispatch = useDispatch<any>()
-    // const book = useSelector(selectBookById)
 
     const books = useSelector(selectBooks)
     const book = books.find((e: any) => e.id == bookId)
@@ -26,20 +24,6 @@ const BookPage = () => {
         }
         navigate('/')
     };
-
-    useEffect(() => {
-        
-        // if (bookId) {
-        //     const book = books.filter((e: any) => e.id == bookId)
-        //     console.log(book)
-        // }
-        // if (bookId) {
-        //     const book = books[bookId]
-        // }
-        // if (bookId) {
-        //     dispatch(getBookById(bookId))
-        // }
-    }, [bookId, dispatch])
    
     return (
         <>

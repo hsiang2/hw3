@@ -1,9 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// const books: Book[] = []
-// const initialState = { books }
-
 interface UpdateBookPayload {
     bookId: string;
     bookData: {
@@ -160,23 +157,12 @@ const bookSlice = createSlice({
                 state.isLoading = false;
                 state.hasError = true;
             })
-    }
-    // reducers: {
-    //     fetchBooks: (state) => {
-    //         console.log("Hi")
-    //         axios.get('https://jsonplaceholder.typicode.com/posts').then((response) => {
-    //             const books = response.data as Book[]
-    //             state.books = books
-    //         })
-    //     }
-    // }
-    ,
+    },
     reducers: {}
 })
 
 export const selectBooks = (state: any) => state.book.books
 export const selectLoadingState = (state: any) => state.book.isLoading
 export const selectErrorState = (state: any) => state.book.hasError
-// export const { fetchBooks } = bookSlice.actions
 export default bookSlice.reducer
 

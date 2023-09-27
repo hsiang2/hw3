@@ -1,3 +1,5 @@
+$text-color: #2f5544;
+
 .container {
   width: 100%;
   margin-left: auto;
@@ -30,13 +32,13 @@
 /* Header */
 
 .header-home {
-  color: #2f5544;
+  color: $text-color;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.75rem;
 }
 
-.header-btn.ant-btn-primary.ant-btn-round {
+/*.header-btn.ant-btn-primary.ant-btn-round {
   background-color: #3d6f59;
   &:hover {
     background-color: #2f5544;
@@ -56,12 +58,12 @@
 }
 
 .book-item-title {
-  color: #2f5544;
+  color: $text-color;
   text-align: center;
 }
 
 .book-item-author {
-  color: #2f5544;
+  color: $text-color;
   text-align: center;
   opacity: 0.5;
 }
@@ -115,7 +117,7 @@
 }
 
 .update-btn.ant-btn-round.ant-btn-lg {
-  color: #2f5544;
+  color: $text-color;
   border-color: #3d6f59;
   &:hover {
     color: #538b73;
@@ -146,21 +148,13 @@
   margin-top: 4rem;
 }
 
-.add-book-btn.ant-btn-primary.ant-btn-round {
+.add-book-btn {
   width: 13rem;
-  background-color: #3d6f59;
-  &:hover {
-    background-color: #2f5544;
-  }
 }
 
-.submit-update-btn.ant-btn-round.ant-btn-lg {
+.submit-update-btn {
   width: 8rem;
   margin-left: 1rem;
-  background-color: #3d6f59;
-  &:hover {
-    background-color: #2f5544;
-  }
 }
 
 

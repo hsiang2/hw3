@@ -1,15 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// interface UpdateBookPayload {
-//     bookId: string;
-//     bookData: {
-//         title: string;
-//         body: string;
-//         userId: number;
-//     };
-// }
-
 export const getBookById = createAsyncThunk(
     "bookById/getBookById",
     async (bookId: string) => {
@@ -26,23 +17,6 @@ export const getBookById = createAsyncThunk(
           }
     }
 )
-
-// export const updateBook = createAsyncThunk<Book, UpdateBookPayload>(
-//     "bookById/updateBook",
-//     async ({bookId, bookData}) => {
-//         try {
-//             const response = await axios.patch(`https://jsonplaceholder.typicode.com/posts/${bookId}`, bookData)
-//             const data = {
-//                 ...response.data,
-//                 image: "/images/img_book.jpg"
-//             } 
-//             console.log(data)
-//             return data
-//         } catch (error) {
-//             console.error(error);
-//           }
-//     }
-// )
 
 const bookByIdSlice = createSlice({
     name: 'bookById',
@@ -66,21 +40,6 @@ const bookByIdSlice = createSlice({
                 state.isLoading = false;
                 state.hasError = true;
             })
-            // .addCase(updateBook.pending, (state) => {
-            //     state.isLoading = true;
-            //     state.hasError = false;
-            // })
-            // .addCase(updateBook.fulfilled, (state, action) => {
-                
-            //     // state.book = action.payload;
-            //     state.isLoading = false;
-            //     state.hasError = false;
-            // })
-            // .addCase(updateBook.rejected, (state, action) => {
-            //     state.isLoading = false;
-            //     state.hasError = true;
-            // })
-
     },
     reducers: {}
 })

@@ -18,7 +18,7 @@ const Header = () => {
                 <Link to="/" className="header-home">
                     BOOKS
                 </Link>
-                <Search placeholder="Find Books..." onSearch={onSearch}  />
+                <Search name="search" placeholder="Find Books..." onSearch={onSearch}  />
             </div>
             <Link to="/addBook">
                 <Button type="primary" shape="round" className="header-btn">ADD NEW BOOKS</Button>

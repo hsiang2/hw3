@@ -2,8 +2,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import Header from "../components/Header"
 import { useDispatch, useSelector } from "react-redux"
-import { getBookById, selectBookById, selectLoadingState } from "../redux/bookByIdSlice"
-import { useEffect } from "react"
+import { selectLoadingState } from "../redux/bookByIdSlice"
 import { Button, Popconfirm, Skeleton } from "antd"
 import { authors } from "../constants/global"
 import { deleteBook, selectBooks } from "../redux/bookSlice"
@@ -14,7 +13,7 @@ const BookPage = () => {
     const dispatch = useDispatch<any>()
 
     const books = useSelector(selectBooks)
-    const book = books.find((e: any) => e.id == bookId)
+    const book = bookId ? books.find((e: Book) => e.id == parseInt(bookId)) : {}
     const isLoading = useSelector(selectLoadingState)
     const navigate = useNavigate()
 

@@ -146,7 +146,7 @@ const bookSlice = createSlice({
             })
             .addCase(updateBook.fulfilled, (state, action) => {
                 
-                let index = state.books.findIndex((e:any) => e.id == action.payload.id);
+                let index = state.books.findIndex((e: Book) => e.id == action.payload.id);
                 
                 state.books[index] = action.payload;
                 // state.book = action.payload;

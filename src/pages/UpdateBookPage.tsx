@@ -7,12 +7,10 @@ import TextArea from "antd/es/input/TextArea"
 import { useNavigate, useParams } from "react-router-dom"
 import { authors } from "../constants/global"
 
-
-
 const UpdateBookPage = () => {
     const { bookId } = useParams()
     const books = useSelector(selectBooks)
-    const book = books.find((e: any) => e.id == bookId)
+    const book = bookId ? books.find((e: Book) => e.id == parseInt(bookId)) : {}
 
     const navigate = useNavigate()
     const dispatch = useDispatch<any>()

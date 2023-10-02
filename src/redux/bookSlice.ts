@@ -28,24 +28,6 @@ export const getBooks = createAsyncThunk(
     }
 )
 
-// export const searchBooks = createAsyncThunk(
-//     "book/searchBooks",
-//     async (keyword: string) => {
-//         try {
-//             const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?title=${keyword}`)
-//             const data = response.data.map((e: object) => (
-//                 {
-//                     ...e,
-//                     image: "/images/img_book.jpg"
-//                 }
-//             ))
-//             return data
-//         } catch (error) {
-//             console.error(error);
-//           }
-//     }
-// )
-
 export const updateBook = createAsyncThunk<Book, UpdateBookPayload>(
     "book/updateBook",
     async ({bookId, bookData}) => {
@@ -149,7 +131,6 @@ const bookSlice = createSlice({
                 let index = state.books.findIndex((e: Book) => e.id == action.payload.id);
                 
                 state.books[index] = action.payload;
-                // state.book = action.payload;
                 state.isLoading = false;
                 state.hasError = false;
             })

@@ -18,7 +18,7 @@ const HomePage = () => {
         <>
             <Header />
             <div className="container">
-                <Row align="top" gutter={[40, 40]} style={{margin: "6rem 0"}}>
+                <Row  gutter={[40, 40]} style={{margin: "6rem 0"}}>
                     {books.map((book: Book) => (
                         <BookItem book={book} key={book.id} />
                     ))}

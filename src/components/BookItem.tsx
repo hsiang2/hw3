@@ -1,6 +1,7 @@
 import { Col } from "antd"
 import { Link } from "react-router-dom"
 import { authors } from "../constants/global"
+
 interface BookItemProps {
     book: Book
 }

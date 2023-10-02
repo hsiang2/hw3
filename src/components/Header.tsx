@@ -12,7 +12,6 @@ const Header = () => {
         navigate(`/${value.trim()}`)
     }
     return (
-        // <div className="header">
         <div className="container header">
             <div className="nav-left">
                 <Link to="/" className="header-home">
@@ -24,7 +23,6 @@ const Header = () => {
                 <Button type="primary" shape="round" className="header-btn">ADD NEW BOOKS</Button>
             </Link>
         </div>
-        // </div>
     )
 }
 

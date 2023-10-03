@@ -1,22 +1,18 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { selectBooks, updateBook } from "../redux/bookSlice"
-import Header from "../components/Header"
+import { useDispatch } from "react-redux"
+import { addBook } from "../redux/bookSlice"
 import { Button, Form, Input, Select } from "antd"
 import TextArea from "antd/es/input/TextArea"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { authors } from "../constants/global"
 
-const UpdateBookPage = () => {
-    const { bookId } = useParams()
-    const books = useSelector(selectBooks)
-    const book = bookId ? books.find((e: Book) => e.id == parseInt(bookId)) : {}
 
+const AddBookPage = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch<any>()
-    const [title, setTitle] = useState(book.title)
-    const [body, setBody] = useState(book.body)
-    const [userId, setUserId] = useState(book.userId)
+    const [title, setTitle] = useState('')
+    const [body, setBody] = useState('')
+    const [userId, setUserId] = useState(0)
 
     type FieldType = {
         title: string;
@@ -24,15 +20,12 @@ const UpdateBookPage = () => {
         userId: number;
     };
 
-    const handleUpdateBook = async () => {
+    const handleAddBook = () => {
         const bookData = {
             title, body, userId
         }
-        if (bookId) {
-            await dispatch(updateBook({ bookId, bookData }))
-            navigate(`/book/${bookId}`)
-        }
-        
+        dispatch(addBook(bookData))
+        navigate('/')
     }
 
     const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,16 +42,15 @@ const UpdateBookPage = () => {
 
     return (
         <>
-            <Header />
             <div className="container">
                 <div className="add-book">
                     <h1 className="add-book-title">
-                        Update the Book.
+                        Add a Book.
                     </h1>
                     <Form
                         name="basic"
                         style={{ width: "100%"}}
-                        onFinish={handleUpdateBook}
+                        onFinish={handleAddBook}
                         labelCol={{span: 24}}
                         className="add-book-form"
                     >
@@ -66,15 +58,13 @@ const UpdateBookPage = () => {
                             label="Book Title"
                             name="title"
                             rules={[{ required: true, message: 'Please input book title!' }]}
-                            initialValue={title}
                         >
-                            <Input value={title} onChange={handleTitleChange} />
+                            <Input name="title" value={title} onChange={handleTitleChange} />
                         </Form.Item>
                         <Form.Item<FieldType>
                             label="Author"
                             name="userId"
                             rules={[{ required: true, message: 'Please input the author!' }]}
-                            initialValue={userId.toString()}
                         >
                             <Select
                                 onChange={handleUserIdChange}
@@ -88,17 +78,13 @@ const UpdateBookPage = () => {
                             label="Description"
                             name="body"
                             rules={[{ required: true, message: 'Please input the description!' }]}
-                            initialValue={body}
                         >
-                            <TextArea rows={4} value={body} onChange={handleBodyChange} />
+                            <TextArea name="body" rows={4} value={body} onChange={handleBodyChange} />
                         </Form.Item>
 
                         <Form.Item>
                         <div className="add-book-btn-wrapper">
-                            <Button size="large" shape="round" className="update-btn" onClick={() => {navigate(`/book/${book.id}`)}}>
-                                CANCEL
-                            </Button>
-                            <Button className="submit-update-btn" shape="round" size="large" type="primary" htmlType="submit">
+                            <Button className="add-book-btn" shape="round" size="large" type="primary" htmlType="submit">
                                 SUBMIT
                             </Button>
                         </div>
@@ -110,4 +96,4 @@ const UpdateBookPage = () => {
     )
 }
 
-export default UpdateBookPage
+export default AddBookPage

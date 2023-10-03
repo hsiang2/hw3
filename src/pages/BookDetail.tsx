@@ -1,11 +1,11 @@
 
 import { useNavigate, useParams } from "react-router-dom"
-import Header from "../components/Header"
 import { useDispatch, useSelector } from "react-redux"
 import { selectLoadingState } from "../redux/bookByIdSlice"
 import { Button, Popconfirm, Skeleton } from "antd"
 import { authors } from "../constants/global"
 import { deleteBook, selectBooks } from "../redux/bookSlice"
+import { Book } from "../models/book"
 
 
 const BookPage = () => {
@@ -26,13 +26,12 @@ const BookPage = () => {
    
     return (
         <>
-            <Header />
             <div className="container">
                 {isLoading ? (
                     <Skeleton style={{marginTop: "5.5rem"}}  />
                 ) : (
                     <div className="book-detail">
-                        <img src={book.image} className="book-detail-img" />
+                        <img alt={book.title} src={book.image} className="book-detail-img" />
                         <div className="book-detail-text">
                             <div>
                                 <h1 className="book-detail-title">{book.title}</h1>

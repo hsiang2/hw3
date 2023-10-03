@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Book } from "../models/book";
 
 interface UpdateBookPayload {
     bookId: string;

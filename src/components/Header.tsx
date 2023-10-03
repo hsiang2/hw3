@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import { Button, Input } from "antd"
 import type { SearchProps } from "antd/es/input";
 
@@ -6,11 +6,24 @@ const { Search } = Input
 
 
 const Header = () => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
+
+    const [searchParams, setSearchParams] = useSearchParams()
 
     const onSearch: SearchProps['onSearch'] = (value, _e, info) => {
-        navigate(`/${value.trim()}`)
+        let search;
+        if (value) {
+            search = {
+                keyword: value
+            }
+        } else {
+            search = undefined;
+        }
+
+        setSearchParams(search, { replace: true });
+        // navigate(`/${value.trim()}`)
     }
+    
     return (
         <div className="container header">
             <div className="nav-left">

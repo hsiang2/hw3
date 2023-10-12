@@ -6,14 +6,15 @@ import { Button, Popconfirm, Skeleton } from "antd"
 import { authors } from "../constants/global"
 import { deleteBook, selectBooks } from "../redux/bookSlice"
 import { Book } from "../models/book"
+import { useEffect } from "react"
 
 
-const BookPage = () => {
+function BookDetail() {
     const { bookId } = useParams()
     const dispatch = useDispatch<any>()
 
-    const books = useSelector(selectBooks)
-    const book = bookId ? books.find((e: Book) => e.id == parseInt(bookId)) : {}
+    const bookArr = useSelector(selectBooks)
+    const book = bookId ? bookArr.find((e: Book) => e.id == parseInt(bookId)) : {}
     const isLoading = useSelector(selectLoadingState)
     const navigate = useNavigate()
 
@@ -23,10 +24,18 @@ const BookPage = () => {
         }
         navigate('/')
     };
+
+    useEffect(() => {
+        if ( !(bookId && bookArr.some((e: Book) => e.id == parseInt(bookId)))) {
+            navigate('/404')
+        }
+
+    }, [])
    
     return (
         <>
             <div className="container">
+                
                 {isLoading ? (
                     <Skeleton style={{marginTop: "5.5rem"}}  />
                 ) : (
@@ -58,4 +67,4 @@ const BookPage = () => {
     )
 }
 
-export default BookPage
+export default BookDetail

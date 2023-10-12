@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { authors } from "../constants/global"
 
 
-const AddBookPage = () => {
+function AddBook() {
     const navigate = useNavigate()
     const dispatch = useDispatch<any>()
     const [title, setTitle] = useState('')
@@ -96,4 +96,4 @@ const AddBookPage = () => {
     )
 }
 
-export default AddBookPage
+export default AddBook

@@ -1,22 +1,23 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { selectBooks, updateBook } from "../redux/bookSlice"
+import { addBook, selectBooks, updateBook } from "../redux/bookSlice"
 import { Button, Form, Input, Select } from "antd"
 import TextArea from "antd/es/input/TextArea"
 import { useNavigate, useParams } from "react-router-dom"
 import { authors } from "../constants/global"
 import { Book } from "../models/book"
 
-const UpdateBookPage = () => {
+function UpdateBook() {
     const { bookId } = useParams()
+    const formType = bookId ? "update" : "add"
     const books = useSelector(selectBooks)
     const book = bookId ? books.find((e: Book) => e.id == parseInt(bookId)) : {}
 
     const navigate = useNavigate()
     const dispatch = useDispatch<any>()
-    const [title, setTitle] = useState(book.title)
-    const [body, setBody] = useState(book.body)
-    const [userId, setUserId] = useState(book.userId)
+    const [title, setTitle] = useState(book.title || "")
+    const [body, setBody] = useState(book.body  || "")
+    const [userId, setUserId] = useState(book.userId || 1)
 
     type FieldType = {
         title: string;
@@ -32,7 +33,14 @@ const UpdateBookPage = () => {
             await dispatch(updateBook({ bookId, bookData }))
             navigate(`/book/${bookId}`)
         }
-        
+    }
+
+    const handleAddBook = () => {
+        const bookData = {
+            title, body, userId
+        }
+        dispatch(addBook(bookData))
+        navigate('/')
     }
 
     const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,12 +60,12 @@ const UpdateBookPage = () => {
             <div className="container">
                 <div className="add-book">
                     <h1 className="add-book-title">
-                        Update the Book.
+                        {formType == "update" ? "Update the Book." : "Add the Book."}
                     </h1>
                     <Form
                         name="basic"
                         style={{ width: "100%"}}
-                        onFinish={handleUpdateBook}
+                        onFinish={formType == "update" ? handleUpdateBook : handleAddBook}
                         labelCol={{span: 24}}
                         className="add-book-form"
                     >
@@ -94,12 +102,21 @@ const UpdateBookPage = () => {
 
                         <Form.Item>
                         <div className="add-book-btn-wrapper">
-                            <Button size="large" shape="round" className="update-btn" onClick={() => {navigate(`/book/${book.id}`)}}>
-                                CANCEL
-                            </Button>
-                            <Button className="submit-update-btn" shape="round" size="large" type="primary" htmlType="submit">
-                                SUBMIT
-                            </Button>
+                            {formType == "update" ? (
+                                <>
+                                    <Button size="large" shape="round" className="update-btn" onClick={() => {navigate(`/book/${book.id}`)}}>
+                                        CANCEL
+                                    </Button>
+                                    <Button className="submit-update-btn" shape="round" size="large" type="primary" htmlType="submit">
+                                        SUBMIT
+                                    </Button>
+                                </>
+                            ):(
+                                <Button className="add-book-btn" shape="round" size="large" type="primary" htmlType="submit">
+                                    SUBMIT
+                                </Button>
+                            )}
+                            
                         </div>
                         </Form.Item>
                     </Form>
@@ -109,4 +126,4 @@ const UpdateBookPage = () => {
     )
 }
 
-export default UpdateBookPage
+export default UpdateBook

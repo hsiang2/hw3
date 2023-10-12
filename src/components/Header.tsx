@@ -5,20 +5,23 @@ import type { SearchProps } from "antd/es/input";
 const { Search } = Input
 
 
-const Header = () => {
+function Header() {
     // const navigate = useNavigate()
 
     const [searchParams, setSearchParams] = useSearchParams()
 
     const onSearch: SearchProps['onSearch'] = (value, _e, info) => {
-        let search;
-        if (value) {
-            search = {
-                keyword: value
-            }
-        } else {
-            search = undefined;
-        }
+
+
+        const search = value ? { keyword: value } : undefined;
+
+        // if (value) {
+        //     search = {
+        //         keyword: value
+        //     }
+        // } else {
+        //     search = undefined;
+        // }
 
         setSearchParams(search, { replace: true });
         // navigate(`/${value.trim()}`)

@@ -5,7 +5,8 @@ import { Link, useSearchParams } from "react-router-dom"
 import { authors } from "../constants/global"
 import { Book } from "../models/book"
 
-const HomePage = () => {
+function Home() {
+    
     // const { keyword } = useParams()
     let books = useSelector(selectBooks)
     let [searchParams, setSearchParams] = useSearchParams();
@@ -28,13 +29,13 @@ const HomePage = () => {
     )
 }
 
-export default HomePage
+export default Home
 
 interface BookItemProps {
     book: Book
 }
 
-const BookItem = ({book}: BookItemProps) => {
+function BookItem({book}: BookItemProps) {
     return (
         <Col
             xs={{ span: 24 }}

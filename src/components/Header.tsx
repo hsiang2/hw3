@@ -23,7 +23,7 @@ function Header() {
         //     search = undefined;
         // }
 
-        setSearchParams(search, { replace: true });
+        setSearchParams(search);
         // navigate(`/${value.trim()}`)
     }
     

@@ -4,7 +4,7 @@ import { addBook } from "../redux/bookSlice"
 import { Button, Form, Input, Select } from "antd"
 import TextArea from "antd/es/input/TextArea"
 import { useNavigate } from "react-router-dom"
-import { authors } from "../constants/global"
+import { authors } from "../models/book"
 
 
 function AddBook() {
@@ -20,7 +20,7 @@ function AddBook() {
         userId: number;
     };
 
-    const handleAddBook = () => {
+    function handleAddBook() {
         const bookData = {
             title, body, userId
         }
@@ -28,15 +28,15 @@ function AddBook() {
         navigate('/')
     }
 
-    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    function handleTitleChange(event: React.ChangeEvent<HTMLInputElement>) {
         setTitle(event.target.value);
     };
     
-    const handleBodyChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    function handleBodyChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
         setBody(event.target.value);
     };
 
-    const handleUserIdChange =(value: string) => {
+    function handleUserIdChange(value: string) {
         setUserId(parseInt(value))
     };
 

@@ -2,7 +2,7 @@ import { Col, Row } from "antd"
 import { useSelector } from "react-redux"
 import { selectBooks } from "../redux/bookSlice"
 import { Link, useSearchParams } from "react-router-dom"
-import { authors } from "../constants/global"
+import { authors } from "../models/book"
 import { Book } from "../models/book"
 
 function Home() {

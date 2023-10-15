@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { selectLoadingState } from "../redux/bookByIdSlice"
 import { Button, Popconfirm, Skeleton } from "antd"
-import { authors } from "../constants/global"
+import { authors } from "../models/book"
 import { deleteBook, selectBooks } from "../redux/bookSlice"
 import { Book } from "../models/book"
 import { useEffect } from "react"
@@ -40,12 +40,12 @@ function BookDetail() {
                     <Skeleton style={{marginTop: "5.5rem"}}  />
                 ) : (
                     <div className="book-detail">
-                        <img alt={book.title} src={book.image} className="book-detail-img" />
+                        <img alt={book?.title} src={book?.image} className="book-detail-img" />
                         <div className="book-detail-text">
                             <div>
-                                <h1 className="book-detail-title">{book.title}</h1>
-                                <h3 className="book-detail-author">By {authors[book.userId - 1]}</h3>
-                                <p className="book-detail-body">{book.body}</p>
+                                <h1 className="book-detail-title">{book?.title}</h1>
+                                <h3 className="book-detail-author">By {authors[book?.userId - 1]}</h3>
+                                <p className="book-detail-body">{book?.body}</p>
                             </div>
                             <div className="book-detail-btns">
                                 <Popconfirm
